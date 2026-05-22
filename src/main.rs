@@ -3,7 +3,7 @@ mod blockchain;
 
 fn main() {
     let genesis_block = block::Block::new(0, String::from("Genesis block"),
-                                    String::from("prev block"));
+                                    String::from("prev block"), 0);
     println!("{:#?}", genesis_block);
 
     // Task 3
