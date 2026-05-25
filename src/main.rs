@@ -3,8 +3,12 @@ mod blockchain;
 mod transaction;
 
 fn main() {
-    let genesis_block = block::Block::new(0, String::from("Genesis block"),
-                                    String::from("prev block"), 0);
+    let genesis_block = block::Block::new(
+        0, 
+        String::from("[]"),
+        String::from("prev block"),
+        0
+        );
     println!("{:#?}", genesis_block);
 
     // Task 3
@@ -24,5 +28,9 @@ fn main() {
 
     for block in &blockchain.chain {
         println!("{:#?}", block);
+        let res = block.get_transactions();
+        for r in res {
+            println!("{} ", r.to_string());
+        }
     }
 }

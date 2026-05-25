@@ -1,3 +1,5 @@
+use crate::transaction::Transaction;
+
 use chrono::Utc;
 use sha2::{Sha256, Digest};
 
@@ -24,6 +26,10 @@ impl Block {
             hash,
             nonce,
         }  
+    }
+
+    pub fn get_transactions(&self) -> Vec<Transaction> {
+        serde_json::from_str(&self.data).unwrap()
     }
 
     pub fn calculate_hash(index: u64, timestamp: i64, data: &String, previous_hash: &String, nonce: u64) -> String {

@@ -12,7 +12,7 @@ impl Blockchain {
     pub fn new(difficulty: usize) -> Self {
         let mut chain = Vec::<Block>::new();
 
-        let genesis_block = Block::new(0, String::from("Genesis block"), String::from("0"), 0);
+        let genesis_block = Block::new(0, String::from("[]"), String::from("0"), 0);
 
         chain.push(genesis_block);
 
@@ -36,12 +36,11 @@ impl Blockchain {
             block_data.push('\n');
         }*/
 
-        let data = serde_json::to_string(&self.pending_transactions)
-                            .expect("Failed to serialize transactions");
+        let data = serde_json::to_string(&self.pending_transactions).unwrap();
 
         let new_block = Block::new(
             last_block.index + 1, 
-            data, 
+                data, 
             last_block.hash.clone(), 
             0);
 
